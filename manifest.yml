@@ -1,0 +1,5 @@
+---
+applications:
+  - name: gateway-sample
+    memory: 1024M
+    path: target/gateway-sample-1.0-SNAPSHOT.jar
