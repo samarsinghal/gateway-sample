@@ -27,7 +27,7 @@ This walkthrough aims to show a basic configuration of the spring cloud gateway 
 
     To package and deploy the sample app :
 
-      $ cd [GITHUB HOME]/gateway-sample/sample-app
+      $ cd [GITHUB HOME]/gateway-sample/gateway-sample
       $ mvn clean package
       $ cf push --no-route
 
@@ -36,19 +36,19 @@ This walkthrough aims to show a basic configuration of the spring cloud gateway 
     If application is already deployed then delete routes for existing apps
 
       cf delete-route <APPLICATION-HOST>
-      $ cf delete-route sample-app
+      $ cf delete-route gateway-sample
 
 ### Step 4 - Map Internal route
  
     app.internal is not a public route. its not exposed outside CF  
 
       cf map-route <APPLICATION-NAME> apps.internal –hostname <APPLICATION-HOST>
-      $ cf map-route sample-app apps.internal --hostname sample-app 
+      $ cf map-route gateway-sample apps.internal --hostname gateway-sample 
 
 ### Step 5 - Bind service
 
       cf bind-service <APPLICATION-NAME>  <GATEWAY-NAME>  -c '{"routes": [{"path": "/**"}]}'
-      $ cf bind-service sample-app  my-gateway  -c '{"routes": [{"path": "/**"}]}'
+      $ cf bind-service gateway-sample  my-gateway  -c '{"routes": [{"path": "/**"}]}'
 
 ### Step 6 - Test application access via gateway
 
@@ -58,9 +58,9 @@ The sample app is a simple Spring Boot application that exposes a simple ***/hea
 
 Curl https://GATEWAY-ROUTE/APPLICATION-NAME/PATH" and you should see all headers.
     
-    curl --location --request GET 'https://gateway-hostname.cfapps.haas-228.pez.pivotal.io/sample-app/headers' --header  'uniqueid: ABC123'      
+    curl --location --request GET 'https://gateway-hostname.cfapps.haas-228.pez.pivotal.io/gateway-sample/headers' --header  'uniqueid: ABC123'      
     
-    https://gateway-hostname.cfapps.haas-228.pez.pivotal.io/sample-app/headers 
+    https://gateway-hostname.cfapps.haas-228.pez.pivotal.io/gateway-sample/headers 
     (assuming your cf deployment system domain is cfapps.haas-228.pez.pivotal.io)  
 ---------------------------------------------------------------------
 
