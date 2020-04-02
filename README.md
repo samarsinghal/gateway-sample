@@ -27,7 +27,7 @@ This walkthrough aims to show a basic configuration of the spring cloud gateway 
 
     To package and deploy the sample app :
 
-      $ cd [GITHUB HOME]/gateway-sample/gateway-sample
+      $ cd [GITHUB HOME]/gateway-sample
       $ mvn clean package
       $ cf push --no-route
 
